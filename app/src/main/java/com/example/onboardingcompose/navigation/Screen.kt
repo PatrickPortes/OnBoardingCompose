@@ -2,7 +2,7 @@ package com.example.onboardingcompose.navigation
 
 sealed class Screen(val route: String) {
 
-    object SplashScreen : Screen(route = "splash_screen")
+    object WelcomeScreen : Screen(route = "welcome_screen")
     object HomeScreen : Screen(route = "home_screen")
 
 }

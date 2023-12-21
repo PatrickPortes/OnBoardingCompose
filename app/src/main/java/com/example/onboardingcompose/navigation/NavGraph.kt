@@ -1,40 +1,31 @@
 package com.example.onboardingcompose.navigation
 
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import com.example.onboardingcompose.screens.HomeScreen
+import com.example.onboardingcompose.screens.WelcomeScreen
+import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalAnimationApi
+@ExperimentalPagerApi
 @Composable
 fun NavGraph(
+    navController: NavHostController,
+    startDestination: String
 ) {
-    val navController = rememberNavController()
 
     NavHost(
         navController = navController,
-        startDestination = Screen.SplashScreen.route
+        startDestination = startDestination
     ) {
-        composable(route = Screen.SplashScreen.route) {
-            // TODO: SplashScreen(navController)
+        composable(route = Screen.WelcomeScreen.route) {
+            WelcomeScreen(navController = navController)
         }
         composable(route = Screen.HomeScreen.route) {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text(
-                    text = "Home Screen",
-                    color = if (isSystemInDarkTheme()) Color.White else Color.Black,
-                    fontSize = MaterialTheme.typography.displayLarge.fontSize,
-                    fontWeight = FontWeight.Bold
-                )
-            }
+            HomeScreen()
         }
     }
 }
